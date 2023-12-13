@@ -7,12 +7,8 @@ io.on('connection', function (socket) {
     socket.userId = userId++;
     console.log('a user connected, user id: ' + socket.userId);
 
-    socket.on('chat', function (msg) {
+    socket.on('message', function (msg) {
         console.log('message from user#' + socket.userId + ": " + msg);
-        io.emit('chat', {
-            id: socket.userId,
-            msg: msg,
-        });
     });
 });
 
