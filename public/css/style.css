@@ -1,0 +1,13 @@
+.ui-w-40 {
+    width: 40px !important;
+    height: auto;
+}
+
+.modal-backdrop {
+    background-color: rgba(195, 195, 195, 0);
+}
+
+.modal-ku {
+    width: 90vw;
+    margin-left: 5vw;
+}
