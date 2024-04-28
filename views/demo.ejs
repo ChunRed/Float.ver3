@@ -10,9 +10,12 @@
         <script src="/jquery.js"></script>
         <script src="/bootstrap.min.js"></script>
         <script src="/p5/lib/p5.js"></script>
-        
+
         <link href="/bootstrap.css" rel="stylesheet">
         <link href="/css/style.css" rel="stylesheet">
+
+        
+
 
     </head>
     <body>
@@ -20,11 +23,10 @@
         <div class="container-fluid ">
             <div class="row">
                 <div class="col">
-                    
-
                     <!-- Modal -->
                     <div class="modal fade " id="MessageModal" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        aria-labelledby="exampleModalLabel" aria-hidden="true"
+                        style="position:fixed; z-index:2 ">
                         <div
                             class="modal-dialog mt-5 modal-backdrop modal-ku">
                             <div class="modal-content">
@@ -35,10 +37,11 @@
                                             <img
                                                 src="/image/user.jpg"
                                                 class="d-block ui-w-40 rounded-circle mb-3"
-                                                alt>
+                                                alt id="image">
                                             <div class="media-body ml-3">
-                                                <div class="Name">@23439485358958399</div>
-                                                <div class="text-muted small">1
+                                                <div class="Name" style="  position:relative; width: 70vw; word-wrap:break-word;">@2343948535000000000000000000000000000000008958399</div>
+                                                <div class="text-muted small"
+                                                    id="time">1
                                                     minute
                                                     ago</div>
                                             </div>
@@ -46,21 +49,23 @@
                                     </div>
                                 </div>
                                 <div class="modal-body">
-<!-- -------------------------------------------------------message -->
-                                    <div id="msg_canvas" style="position:fixed; z-index:1 "></div>
-                                    <p class="State">資訊：</p>
+                                    <!-- -------------------------------------------------------message -->
+                                    <div id="msg_canvas"
+                                        style="position:fixed; z-index:3 "></div>
+                                    <p class="State"
+                                        style="color:white;">資訊：</p>
                                     <p class="Message"></p>
-                                    
+
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer" id="foot">
                                     <a href="javascript:void(0)"
                                         class="d-inline-block text-muted">
-                                        <strong>123</strong> <small
+                                        <strong>〇〇〇</strong> <small
                                             class="align-middle">Likes</small>
                                     </a>
                                     <a href="javascript:void(0)"
                                         class="d-inline-block text-muted">
-                                        <strong>12</strong> <small
+                                        <strong>〇〇〇</strong> <small
                                             class="align-middle">Comments</small>
                                     </a>
                                     <a href="javascript:void(0)"
@@ -75,6 +80,39 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col">
+                    <!-- Modal -->
+                    <div class="modal fade " id="LoadingMessageModal"
+                        tabindex="5"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true"
+                        style="position:fixed; z-index:6 ">
+                        <div
+                            class="modal-dialog modal-fullscreen  modal-backdrop ">
+                            <div id="loading_bg" class="modal-content "
+                                style="background-color: rgba(0,0,0,0.7);">
+
+                                <div class="row" style="height:100%">
+                                    <h4 class="text-center align-self-end  "
+                                        style="color: white; line-height:150%; ">「
+                                        位元單位 」->「 重量單位 」</h4>
+                                    <h1
+                                        class="text-center align-self-start  mt-3 "
+                                        style="color: white; ">Loading ...</h1>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading_text" style="position: fixed; width: 100vw; height: 100vh; z-index: 5;">
+            <p  id="loading_text" style="word-wrap:break-word; font-size: 20px;">
+                
+            </p>
         </div>
 
         <script src="/js/index.js"></script>

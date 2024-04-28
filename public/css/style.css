@@ -11,3 +11,28 @@
     width: 90vw;
     margin-left: 5vw;
 }
+
+.page-section {
+    height: 100vh;
+}
+
+.noto-serif-tc-extralight {
+    font-family: "Noto Serif TC", serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.noto-serif-tc-semibold {
+    font-family: "Noto Serif TC", serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+:root {
+    --mask_color: #000000;
+}
+
+.mask {
+    background-color: var(--mask_color);
+    color: var(--mask_color);
+}
