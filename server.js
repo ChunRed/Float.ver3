@@ -1,9 +1,20 @@
 var express = require('express');
+var path = require('path');
+var fs = require('fs');
 var app = express();
-var http = require('http').Server(app);
+
+var https = require('https').Server(
+    {
+        key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+        cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+    },
+    app
+);
+
 var engine = require('ejs-locals');
 var bodyParser = require('body-parser');
-var io = require('socket.io')(http);
+var io = require('socket.io')(https);
+
 
 let userData = require("./data.json");
 let data = JSON.parse(JSON.stringify(userData));
@@ -21,12 +32,18 @@ app.use(bodyParser.urlencoded({ extends: false }));
 
 
 app.set('views', "./views");
+
+
 app.get('/demo', function (req, res) {
     res.render('demo');
 });
 
 app.get('/', function (req, res) {
     res.render('main');
+});
+
+app.get('/screen', function (req, res) {
+    res.render('screen');
 });
 
 
@@ -50,6 +67,6 @@ io.on('connection', function (socket) {
 });
 
 
-http.listen(3000, function () {
+https.listen(3000, function () {
     console.log('listening on *:3000');
 });

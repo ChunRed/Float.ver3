@@ -1,5 +1,5 @@
 let socket;
-socket = io.connect("http://192.168.0.126:3000");
+socket = io.connect("https://192.168.0.126:3000");
 socket.emit("web_message");
 
 

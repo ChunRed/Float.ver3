@@ -30,7 +30,6 @@
         
         <div class="row page-section justify-content-center align-items-center m-3">
             <div class="col-ms-12 col-md-8">
-
                 <span class=" my-2 noto-serif-tc-semibold" id="date"></span>
                 <p></p>
                 <span class="noto-serif-tc-extralight" id="element" style="word-wrap:break-word;"></span>
@@ -38,10 +37,23 @@
 
             </div>
         </div>
+
+
+        <div class="row page-section justify-content-center align-items-center m-3">
+            <div class="col">
+                <p id="status"></p>
+                <button data-status="off">Turn Wake Lock ON</button>
+                <p>To re-activate the wake lock automatically when the tab becomes active again, check this box: <input type="checkbox" id="reaquire" /></p>
+
+            </div>
+            
+        </div>
+
     </div>
 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/screen_lock.js"></script>
 
 </body>
 </html>
