@@ -1,5 +1,5 @@
 let socket;
-socket = io.connect("https://192.168.0.126:3000");
+socket = io.connect("https://192.168.0.153:3000");
 socket.emit("web_message");
 
 
@@ -167,8 +167,10 @@ function hide_message() {
         }
 
         else {
+            socket.emit('esp_break');
             clearInterval(IntervalID);
             hideText_fadeout();
+            
         }
     }), hide_delayTime);
     

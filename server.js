@@ -58,12 +58,16 @@ io.on('connection', function (socket) {
         let randomValue = Math.floor(Math.random() * data.length);
         let message = [data[randomValue].Date, data[randomValue].Msg, data[randomValue].K1, data[randomValue].K2, data[randomValue].K3, data[randomValue].K4];
 
-
         console.log('user ip: ' + clientIp);
         socket.emit('web_message', message);
-        io.emit('esp_message',clientIp);
+        io.emit('esp_message', clientIp);
+        io.emit('esp_weight', 60);
+        
     });
 
+    socket.on('esp_break', function (MSG) {
+        io.emit('esp_break', clientIp);
+    });
 });
 
 
