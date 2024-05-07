@@ -2,6 +2,8 @@ var express = require('express');
 var path = require('path');
 var fs = require('fs');
 var app = express();
+var Typed = require('typed.js');
+
 
 var https = require('https').Server(
     {
@@ -27,6 +29,7 @@ app.use(express.static('node_modules'));
 app.use(express.static('node_modules/bootstrap/dist/css'));
 app.use(express.static('node_modules/bootstrap/dist/js'));
 app.use(express.static('node_modules/jquery/dist'));
+app.use(express.static('node_modules/typed.js/dist'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extends: false }));
 

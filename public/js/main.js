@@ -1,5 +1,5 @@
 let socket;
-socket = io.connect("https://192.168.0.153:3000");
+socket = io.connect("https://192.168.0.50:3000");
 socket.emit("web_message");
 
 
@@ -196,29 +196,30 @@ function hideText_fadeout(){
 function reset(){
     //date
     var date = new Typed('#date', {
-        startDelay: 10000,
-        strings: ["<br>"],
+        startDelay: 1000,
+        strings: ["資訊剩餘價值："],
         typeSpeed: 80,
         backSpeed: 0,
         fadeOut: true,
         onComplete: (self) => {
-            date.destroy();
-            document.getElementById("date").innerHTML = "<br>";
         },
     });
 
     //msg
     var typed = new Typed('#element', {
         strings: ["已刪除：<br>0.000000000000000000000000000000000" + 319*hide_text + "克",""],
-        startDelay: 5000,
+        startDelay: 15000,
         typeSpeed: 20,
         backSpeed: 0,
-        backDelay: 5000,
+        backDelay: 10000,
         onComplete: (self) => {
             typed.destroy();
             msg.innerHTML = "";
+            date.destroy();
+            document.getElementById("date").innerHTML = "<br>";
 
             var timeout_id = setTimeout((() => {
+                console.clear();
                 socket.emit("web_message");
             }), 5000);
         },
