@@ -1,5 +1,5 @@
 let socket;
-socket = io.connect("https://192.168.0.50:3000");
+socket = io.connect("https://192.168.0.126:3000");
 socket.emit("web_message");
 
 
@@ -11,7 +11,7 @@ let new_text = "";
 let text_array = [];
 let hide_text = 0;
 
-let read_delayTime = 5000;
+let read_delayTime = 10000;
 let hide_delayTime = 100;
 
 
@@ -197,7 +197,7 @@ function reset(){
     //date
     var date = new Typed('#date', {
         startDelay: 1000,
-        strings: ["資訊剩餘價值："],
+        strings: ["資訊的剩餘價值："],
         typeSpeed: 80,
         backSpeed: 0,
         fadeOut: true,
