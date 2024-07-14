@@ -4,23 +4,25 @@ var fs = require('fs');
 var app = express();
 var Typed = require('typed.js');
 
+var http = require('http').Server(app);
 
-var https = require('https').Server(
-    {
-        key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
-        cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
-    },
-    app
-);
+
+// var https = require('https').Server(
+//     {
+//         key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+//         cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+//     },
+//     app
+// );
 
 var engine = require('ejs-locals');
 var bodyParser = require('body-parser');
-var io = require('socket.io')(https);
+var io = require('socket.io')(http);
 
 
 let userData = require("./data.json");
 let data = JSON.parse(JSON.stringify(userData));
-
+let data_index = 409;
 
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
@@ -58,14 +60,17 @@ io.on('connection', function (socket) {
 
     socket.on('web_message', function (MSG) {
 
-        let randomValue = Math.floor(Math.random() * data.length);
-        let message = [data[randomValue].Date, data[randomValue].Msg, data[randomValue].K1, data[randomValue].K2, data[randomValue].K3, data[randomValue].K4];
+        if (data_index < data.length - 1) data_index++;
+        else data_index = 0;
+
+        console.log(data.length.toString() + " : " + data_index.toString());
+        let message = [data[data_index].Date, data[data_index].Msg, data[data_index].K1, data[data_index].K2, data[data_index].K3, data[data_index].K4];
 
         console.log('user ip: ' + clientIp);
         socket.emit('web_message', message);
         io.emit('esp_message', clientIp);
         io.emit('esp_weight', 60);
-        
+
     });
 
     socket.on('esp_break', function (MSG) {
@@ -74,6 +79,6 @@ io.on('connection', function (socket) {
 });
 
 
-https.listen(3000, function () {
-    console.log('listening on *:3000');
-});
+
+let PORT = 3000;
+http.listen(PORT, () => console.log(`Server running on port ${PORT}`));
