@@ -64,15 +64,24 @@ socket.on("web_message", function (message) {
 
 function split_msg() {
 
-    if (typeof text === 'string') {
-        text.split(keyword[0])[0].split(keyword[1]);
-        text.split(keyword[0])[1].split(keyword[1]);
-    } else {
-        console.log('The variable does NOT store a string');
-    }
+    // if (typeof text === 'string') {
+        
+    //     if(keyword[0]) text.split(keyword[0]);
+        
+    //     if(text[0]) text[0].split(keyword[1]);
+    //     if(text[0]) text[1].split(keyword[1]);
+
+    //     text.split(keyword[0])[0].split(keyword[1]);
+    //     text.split(keyword[0])[1].split(keyword[1]);
+    // } else {
+    //     console.log('The variable does NOT store a string');
+    // }
 
     let a_array = [];
-    let a = text.split(keyword[0]);
+
+    let a;
+    if (typeof text === 'string' && keyword[0]) a = text.split(keyword[0]);
+    
     for(let j = 0; j < a.length; j++){
         if (j != a.length - 1) {
             a_array.push(a[j]);
@@ -87,7 +96,10 @@ function split_msg() {
     let b_array = [];
     for (let i = 0; i < a_array.length; i++) {
         if (a_array[i].search(keyword[1]) != -1) {
-            let b = a_array[i].split(keyword[1]);
+
+            let b;
+            if (typeof a_array[i] === 'string' && keyword[1]) b = a_array[i].split(keyword[1]);
+
             for (let j = 0; j < b.length; j++) {
                 if (j != b.length - 1) {
                     b_array.push(b[j]);
@@ -104,7 +116,10 @@ function split_msg() {
     let c_array = [];
     for (let i = 0; i < b_array.length; i++) {
         if (b_array[i].search(keyword[2]) != -1) {
-            let c = b_array[i].split(keyword[2]);
+
+            let c;
+            if (typeof b_array[i] === 'string' && keyword[2]) c = b_array[i].split(keyword[2]);
+
             for (let j = 0; j < c.length; j++) {
                 if (j != c.length - 1) {
                     c_array.push(c[j]);
@@ -122,7 +137,10 @@ function split_msg() {
     let d_array = [];
     for (let i = 0; i < c_array.length; i++) {
         if (c_array[i].search(keyword[3]) != -1) {
-            let d = c_array[i].split(keyword[3]);
+
+            let d
+            if (typeof c_array[i] === 'string' && keyword[3]) d = c_array[i].split(keyword[3]);
+            
             for (let j = 0; j < d.length; j++) {
                 if (j != d.length - 1) {
                     d_array.push(d[j]);
@@ -225,3 +243,4 @@ function reset(){
         },
     });
 }
+

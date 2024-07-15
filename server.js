@@ -22,7 +22,7 @@ var io = require('socket.io')(http);
 
 let userData = require("./data.json");
 let data = JSON.parse(JSON.stringify(userData));
-let data_index = 409;
+let data_index = 547;
 
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
@@ -63,13 +63,22 @@ io.on('connection', function (socket) {
         if (data_index < data.length - 1) data_index++;
         else data_index = 0;
 
-        console.log(data.length.toString() + " : " + data_index.toString());
+        
         let message = [data[data_index].Date, data[data_index].Msg, data[data_index].K1, data[data_index].K2, data[data_index].K3, data[data_index].K4];
 
         console.log('user ip: ' + clientIp);
         socket.emit('web_message', message);
         io.emit('esp_message', clientIp);
-        io.emit('esp_weight', 60);
+
+        let weight = 60 + Math.floor(Math.random() * 30);
+        io.emit('esp_weight', weight);
+
+        console.log(
+            " | IP: " + clientIp[clientIp.length-3] + clientIp[clientIp.length-2] + clientIp[clientIp.length-1] +
+            " | AD: " + data.length.toString() + 
+            " | CD: " + data_index.toString() + 
+            " | CW: " + weight
+        );
 
     });
 
